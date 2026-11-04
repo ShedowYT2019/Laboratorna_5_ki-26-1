@@ -2,15 +2,15 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: gcc.exe build active file",
+            "label": "Build Lab_code",
             "command": "C:/mingw64/bin/gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}\\Test_code\\Test.c",
-                "${workspaceFolder}\\Test_code\\Test_1.c",
+                "${workspaceFolder}\\Lab_code\\mylib.c",
+                "${workspaceFolder}\\Lab_code\\TestMyLib.c",
                 "-o",
-                "${workspaceFolder}\\Test_code\\lab5.exe"
+                "${workspaceFolder}\\Lab_code\\TestMyLib.exe"
             ],
             "options": {
                 "cwd": "C:/mingw64/bin"

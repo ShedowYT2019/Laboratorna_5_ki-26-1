@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Lab_code",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\Lab_code\\TestMyLib.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}\\Lab_code",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
+            "preLaunchTask": "Build Lab_code"
+        }
+    ]
+}
