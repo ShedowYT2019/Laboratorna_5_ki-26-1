@@ -1,9 +1,9 @@
-#include "mylib.h"
+#include "mylib.h" /// Імпортування заголовочного файлу mylib.h, який містить оголошення функцій та констант, що використовуються в цьому файлі.
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> /// Імпортування стандартної бібліотеки вводу/виводу для використання функцій, таких як printf та scanf.
+#include <stdlib.h> /// Імпортування стандартної бібліотеки динамічного виділення пам'яті для використання функцій, таких як calloc та free.
 
-double get_min_from_vector(const double *data, int count) {
+double get_min_from_vector(const double *data, int count) { /// Функція для знаходження мінімального значення у векторі. Приймає вказівник на масив даних та кількість елементів у ньому.
     double min = data[0];
 
     for (int i = 1; i < count; i++) {
@@ -12,7 +12,7 @@ double get_min_from_vector(const double *data, int count) {
     return min;
 }
 
-double get_min_from_matrix(const double **data, int rows, int cols) {
+double get_min_from_matrix(const double **data, int rows, int cols) { /// Функція для знаходження мінімального значення у матриці. Приймає вказівник на масив даних, кількість рядків та стовпців.
     double min = data[0][0];
 
     for (int i = 0; i < rows; i++) {
@@ -23,7 +23,7 @@ double get_min_from_matrix(const double **data, int rows, int cols) {
     return min;
 }
 
-double get_max_from_vector(const double *data, int count) {
+double get_max_from_vector(const double *data, int count) { /// Функція для знаходження максимального значення у векторі. Приймає вказівник на масив даних та кількість елементів у ньому.
     double max = data[0];
 
     for (int i = 1; i < count; i++) {
@@ -32,7 +32,7 @@ double get_max_from_vector(const double *data, int count) {
     return max;
 }
 
-double get_max_from_matrix(const double **data, int rows, int cols) {
+double get_max_from_matrix(const double **data, int rows, int cols) { /// Функція для знаходження максимального значення у матриці. Приймає вказівник на масив даних, кількість рядків та стовпців.
     double max = data[0][0];
 
     for (int i = 0; i < rows; i++) {
@@ -43,7 +43,7 @@ double get_max_from_matrix(const double **data, int rows, int cols) {
     return max;
 }
 
-double get_avg_from_vector(const double *data, int count) {
+double get_avg_from_vector(const double *data, int count) { /// Функція для знаходження середнього значення у векторі. Приймає вказівник на масив даних та кількість елементів у ньому.
     double sum = 0.0;
 
     for (int i = 0; i < count; i++) {
@@ -52,7 +52,7 @@ double get_avg_from_vector(const double *data, int count) {
     return sum / count;
 }
 
-double get_avg_from_matrix(const double **data, int rows, int cols) {
+double get_avg_from_matrix(const double **data, int rows, int cols) { /// Функція для знаходження середнього значення у матриці. Приймає вказівник на масив даних, кількість рядків та стовпців.
     double sum = 0.0;
 
     for (int i = 0; i < rows; i++) {
@@ -63,21 +63,19 @@ double get_avg_from_matrix(const double **data, int rows, int cols) {
     return sum / (rows * cols);
 }
 
-void get_stat_from_vector(const double *data, int count,
-                          double *min, double *max, double *avg) {
+void get_stat_from_vector(const double *data, int count,double *min, double *max, double *avg) {/// Функція для знаходження статистичних характеристик вектора. Приймає вказівник на масив даних, кількість елементів у ньому, а також вказівники на змінні для збереження мінімального, максимального та середнього значень.
     *min = get_min_from_vector(data, count);
     *max = get_max_from_vector(data, count);
     *avg = get_avg_from_vector(data, count);
 }
 
-void get_stat_from_matrix(const double **data, int rows, int cols,
-                          double *min, double *max, double *avg) {
+void get_stat_from_matrix(const double **data, int rows, int cols,double *min, double *max, double *avg) { /// Функція для знаходження статистичних характеристик матриці. Приймає вказівник на масив даних, кількість рядків та стовпців, а також вказівники на змінні для збереження мінімального, максимального та середнього значень.
     *min = get_min_from_matrix(data, rows, cols);
     *max = get_max_from_matrix(data, rows, cols);
     *avg = get_avg_from_matrix(data, rows, cols);
 }
 
-double *input_vector_from_console(double *data, int count) {
+double *input_vector_from_console(double *data, int count) { /// Функція для введення вектора з консолі. Приймає вказівник на масив даних та кількість елементів у ньому.
     if (data == NULL) data = calloc((size_t)count, sizeof(double));
     if (data == NULL) return NULL;
 
@@ -90,7 +88,7 @@ double *input_vector_from_console(double *data, int count) {
     return data;
 }
 
-double **input_matrix_from_console(double **data, int rows, int cols) {
+double **input_matrix_from_console(double **data, int rows, int cols) { /// Функція для введення матриці з консолі. Приймає вказівник на масив даних, кількість рядків та стовпців.
     if (data == NULL) data = calloc((size_t)rows, sizeof(double *));
     if (data == NULL) return NULL;
 
@@ -113,14 +111,14 @@ double **input_matrix_from_console(double **data, int rows, int cols) {
     return data;
 }
 
-void print_vector(const double *data, int count) {
+void print_vector(const double *data, int count) { /// Функція для виведення вектора на консоль. Приймає вказівник на масив даних та кількість елементів у ньому.
     for (int i = 0; i < count; i++) {
         printf("%g ", data[i]);
     }
     printf("\n");
 }
 
-void print_matrix(const double **data, int rows, int cols) {
+void print_matrix(const double **data, int rows, int cols) { /// Функція для виведення матриці на консоль. Приймає вказівник на масив даних, кількість рядків та стовпців.
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             printf("%g ", data[i][j]);

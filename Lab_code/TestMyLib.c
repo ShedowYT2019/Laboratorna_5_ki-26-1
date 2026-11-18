@@ -1,10 +1,10 @@
-#include "mylib.h"
+#include "mylib.h" /// Імпортування заголовочного файлу mylib.h, який містить оголошення функцій та констант, що використовуються в цьому файлі.
 
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <math.h> /// Імпортування стандартної бібліотеки математичних функцій для використання функції fabs.
+#include <stdio.h> /// Імпортування стандартної бібліотеки вводу/виводу для використання функцій, таких як printf та scanf.
+#include <stdlib.h> /// Імпортування стандартної бібліотеки динамічного виділення пам'яті для використання функцій, таких як calloc та free.
 
-static void free_matrix(double **data, int rows) {
+static void free_matrix(double **data, int rows) { /// Функція для звільнення пам'яті, виділеної для матриці. Приймає вказівник на масив даних та кількість рядків у ньому.
     if (data == NULL) return;
 
     for (int i = 0; i < rows; i++) {
@@ -13,12 +13,12 @@ static void free_matrix(double **data, int rows) {
     free(data);
 }
 
-#ifdef USE_TEST
+#ifdef USE_TEST  /// Умова компіляції для включення тестів, якщо макрос USE_TEST визначено.
 static int almost_equal(double actual, double expected) {
     return fabs(actual - expected) < 0.000001;
 }
 
-static void run_tests(void) {
+static void run_tests(void) { /// Функція для запуску тестів. Використовується для перевірки правильності роботи функцій бібліотеки.
     double vector[] = {-2.0, 4.0, 6.0};
     double *vector_ptr = vector;
     double matrix_row_1[] = {1.0, 8.0};
@@ -28,45 +28,23 @@ static void run_tests(void) {
     double min, max, avg;
 
     printf("\nTESTS\n");
-    printf("Vector min: %s\n",
-           almost_equal(get_min_from_vector(vector_ptr, 3), -2.0)
-               ? "PASS" : "FAIL");
-    printf("Vector max: %s\n",
-           almost_equal(get_max_from_vector(vector_ptr, 3), 6.0)
-               ? "PASS" : "FAIL");
-    printf("Vector avg: %s\n",
-           almost_equal(get_avg_from_vector(vector_ptr, 3), 8.0 / 3.0)
-               ? "PASS" : "FAIL");
+    printf("Vector min: %s\n", almost_equal(get_min_from_vector(vector_ptr, 3), -2.0) ? "PASS" : "FAIL");
+    printf("Vector max: %s\n",almost_equal(get_max_from_vector(vector_ptr, 3), 6.0) ? "PASS" : "FAIL");
+    printf("Vector avg: %s\n",almost_equal(get_avg_from_vector(vector_ptr, 3), 8.0 / 3.0) ? "PASS" : "FAIL");
 
     get_stat_from_vector(vector_ptr, 3, &min, &max, &avg);
-    printf("Vector statistics: %s\n",
-           almost_equal(min, -2.0) && almost_equal(max, 6.0) &&
-                   almost_equal(avg, 8.0 / 3.0)
-               ? "PASS" : "FAIL");
+    printf("Vector statistics: %s\n",almost_equal(min, -2.0) && almost_equal(max, 6.0) &&almost_equal(avg, 8.0 / 3.0) ? "PASS" : "FAIL");
 
-    printf("Matrix min: %s\n",
-           almost_equal(get_min_from_matrix((const double **)matrix_ptr, 2, 2),
-                        -3.0)
-               ? "PASS" : "FAIL");
-    printf("Matrix max: %s\n",
-           almost_equal(get_max_from_matrix((const double **)matrix_ptr, 2, 2),
-                        8.0)
-               ? "PASS" : "FAIL");
-    printf("Matrix avg: %s\n",
-           almost_equal(get_avg_from_matrix((const double **)matrix_ptr, 2, 2),
-                        11.0 / 4.0)
-               ? "PASS" : "FAIL");
+    printf("Matrix min: %s\n",almost_equal(get_min_from_matrix((const double **)matrix_ptr, 2, 2),-3.0) ? "PASS" : "FAIL");
+    printf("Matrix max: %s\n",almost_equal(get_max_from_matrix((const double **)matrix_ptr, 2, 2),8.0) ? "PASS" : "FAIL");
+    printf("Matrix avg: %s\n",almost_equal(get_avg_from_matrix((const double **)matrix_ptr, 2, 2),11.0 / 4.0) ? "PASS" : "FAIL");
 
-    get_stat_from_matrix((const double **)matrix_ptr, 2, 2,
-                         &min, &max, &avg);
-    printf("Matrix statistics: %s\n",
-           almost_equal(min, -3.0) && almost_equal(max, 8.0) &&
-                   almost_equal(avg, 11.0 / 4.0)
-               ? "PASS" : "FAIL");
+    get_stat_from_matrix((const double **)matrix_ptr, 2, 2,&min, &max, &avg);
+    printf("Matrix statistics: %s\n",almost_equal(min, -3.0) && almost_equal(max, 8.0) &&almost_equal(avg, 11.0 / 4.0) ? "PASS" : "FAIL");
 }
 #endif
 
-int main(void) {
+int main(void) { /// Головна функція програми. Виконує введення вектора та матриці з консолі, обчислює статистичні характеристики та виводить результати на консоль.
     double *v = NULL;
     double **m = NULL;
     int vector_count;
@@ -74,10 +52,10 @@ int main(void) {
     int cols;
     double min, max, avg;
 
-#ifdef USE_TEST
+#ifdef USE_TEST /// Умова компіляції для запуску тестів, якщо макрос USE_TEST визначено.
     run_tests();
     return 0;
-#endif
+#endif /// Умова компіляції для запуску тестів, якщо макрос USE_TEST визначено.
 
     printf("Enter vector size: ");
     if (scanf("%d", &vector_count) != 1 || vector_count <= 0) return 1;
